@@ -17,6 +17,14 @@ class AuthGate extends ConsumerWidget {
     final authStatus = ref.watch(authNotifierProvider);
     final userRole = ref.watch(userRoleProvider);
 
+
+    // I had to catch this last minute koraaa because, because of a bug it
+    // introduced with the splash screen showing up at places it didn't need to
+    // be.
+
+    // Yep this is pretty much most the logic. Ngl I learn't about
+    // provider-based routing not long, and it it really awesome.
+    // You're kinda not directly routing but you're
     if (authStatus == AuthStatus.initial || (authStatus == AuthStatus.authenticated && userRole == null)) {
       return const SplashScreen();
     }

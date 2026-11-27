@@ -7,12 +7,13 @@ import '../services/auth/auth_interceptor.dart';
 
 final dioProvider = Provider<Dio>((ref) {
   final baseUrl = dotenv.env['BASE_URL'] ?? 'https://reqres.in/api';
+  final Duration duration = const Duration(seconds: 4);
 
   final dio = Dio(
     BaseOptions(
       baseUrl: baseUrl,
-      connectTimeout: const Duration(seconds: 4),
-      receiveTimeout: const Duration(seconds: 4),
+      connectTimeout: duration,
+      receiveTimeout: duration,
     ),
   );
 

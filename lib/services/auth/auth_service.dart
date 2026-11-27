@@ -7,6 +7,9 @@ class AuthService {
   static const String _tokenKey = 'auth_token';
   static const String _roleKey = 'user_role';
 
+  //as  I said and as I'm saying in the google doc, mock_tokens, which would
+  // have been returned by a FastAPI auth service API call
+
 
   // in square brackets means it's optional. Kinda dependency injection y'know.
   // If we wanna
