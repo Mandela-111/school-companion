@@ -15,6 +15,13 @@ class GradeRecord {
     required this.term,
   });
 
+  String get grade {
+    if (score >= 90) return 'A';
+    if (score >= 80) return 'B';
+    if (score >= 70) return 'C';
+    return 'D';
+  }
+
   factory GradeRecord.fromJson(Map<String, dynamic> json) {
     return GradeRecord(
       id: json['id'] ?? '',
