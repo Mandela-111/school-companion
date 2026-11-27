@@ -153,7 +153,7 @@ class ParentDashboardScreen extends ConsumerWidget {
               const SizedBox(width: 12),
               Expanded(child: Text(err.message)),
               ElevatedButton(
-                onPressed: onRetry, // 🌟 Clean VoidCallback!
+                onPressed: onRetry,
                 child: const Text('Retry'),
               ),
             ],

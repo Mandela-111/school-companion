@@ -35,7 +35,8 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                 ButtonSegment(value: UserRole.teacher, label: Text('Teacher')),
               ],
               selected: {_selectedRole},
-              onSelectionChanged: (set) => setState(() => _selectedRole = set.first),
+              onSelectionChanged: (set) =>
+                  setState(() => _selectedRole = set.first),
             ),
             const SizedBox(height: 24),
             const TextField(
@@ -59,19 +60,26 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
               onPressed: _isLoading
                   ? null
                   : () async {
-                setState(() => _isLoading = true);
-                await ref
-                    .read(authNotifierProvider.notifier)
-                    .login('user@school.com', '1234', _selectedRole);
-                if (mounted) setState(() => _isLoading = false);
-              },
+                      setState(() => _isLoading = true);
+                      await ref
+                          .read(authNotifierProvider.notifier)
+                          .login('user@school.com', '1234', _selectedRole);
+                      if (mounted) setState(() => _isLoading = false);
+                    },
               child: _isLoading
                   ? const SizedBox(
-                height: 20,
-                width: 20,
-                child: CircularProgressIndicator(strokeWidth: 2, color: Colors.white),
-              )
-                  : Text(_selectedRole == UserRole.parent ? 'Log In as Parent' : 'Log In as Teacher'),
+                      height: 20,
+                      width: 20,
+                      child: CircularProgressIndicator(
+                        strokeWidth: 2,
+                        color: Colors.white,
+                      ),
+                    )
+                  : Text(
+                      _selectedRole == UserRole.parent
+                          ? 'Log In as Parent'
+                          : 'Log In as Teacher',
+                    ),
             ),
           ],
         ),

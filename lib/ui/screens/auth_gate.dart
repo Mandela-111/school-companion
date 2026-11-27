@@ -15,8 +15,9 @@ class AuthGate extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final authStatus = ref.watch(authNotifierProvider);
+    final userRole = ref.watch(userRoleProvider);
 
-    if (authStatus == AuthStatus.initial) {
+    if (authStatus == AuthStatus.initial || (authStatus == AuthStatus.authenticated && userRole == null)) {
       return const SplashScreen();
     }
 
@@ -24,16 +25,10 @@ class AuthGate extends ConsumerWidget {
       return const LoginScreen();
     }
 
-    // Role-Based Navigation Routing
-    return FutureBuilder<UserRole>(
-      future: ref.read(authServiceProvider).getUserRole(),
-      builder: (context, snapshot) {
-        if (!snapshot.hasData) return const SplashScreen();
-        if (snapshot.data == UserRole.teacher) {
-          return const TeacherDashboardScreen();
-        }
-        return const ParentDashboardScreen();
-      },
-    );
+    if (userRole == UserRole.teacher) {
+      return const TeacherDashboardScreen();
+    }
+    
+    return const ParentDashboardScreen();
   }
 }

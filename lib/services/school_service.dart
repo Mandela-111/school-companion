@@ -16,7 +16,9 @@ class SchoolService {
   final Dio _dio;
   // 3no nti na it's highlighting s3 the variable '_dio' is not used no.
 
-  SchoolService(this._dio);
+  SchoolService(this._dio) {
+    _dio.options;
+  }
 
   Future<StudentModel> getStudentProfile(String studentId) async {
     try {

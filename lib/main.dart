@@ -6,7 +6,6 @@ import 'package:school_companion/ui/screens/auth_gate.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  const env = String.fromEnvironment('ENV', defaultValue: 'dev');
   await dotenv.load(fileName: '.env');
 
   runApp(const ProviderScope(child: SchoolCompanionApp()));
